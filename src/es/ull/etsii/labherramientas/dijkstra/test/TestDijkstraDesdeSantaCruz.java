@@ -10,7 +10,7 @@ import es.ull.etsii.labherramientas.dijkstra.Arista;
 import es.ull.etsii.labherramientas.dijkstra.Dijkstra;
 import es.ull.etsii.labherramientas.dijkstra.Vertice;
 
-public class TestDijkstra 
+public class TestDijkstraDesdeSantaCruz 
 {
 	private Dijkstra m_Algoritmo;
 	private Vertice[] m_Vertices;
@@ -20,8 +20,7 @@ public class TestDijkstra
 	private Vertice v2;
 	private Vertice v3;
 	private Vertice v4;
-	private Vertice m_Vp1;
-	private Vertice m_Vp2;
+	
 	
 	@Before
 	public void antesDelTest() {
@@ -36,9 +35,7 @@ public class TestDijkstra
 		v2 = new Vertice("Tacoronte");
 		v3 = new Vertice("Candelaria");
 		v4 = new Vertice("Guimar");
-		m_Vp1 = new Vertice("VerticePrueba1");
-		m_Vp2 = new Vertice("VerticePrueba2");
-
+		
 		v0.adjacencies = new Arista[]{ new Arista(v1, 10), new Arista(v2, 24), new Arista(v3, 16) };
 		v1.adjacencies = new Arista[]{ new Arista(v0, 10), new Arista(v2, 14), new Arista(v4, 40) };
 		v2.adjacencies = new Arista[]{ new Arista(v0, 24), new Arista(v1, 14) };	
@@ -59,7 +56,7 @@ public class TestDijkstra
 	}
 
 	@Test
-	public void testSantaCruz() 
+	public void testDestinoSantaCruz() 
 	{	
 		Vertice v0 = m_Vertices[0];
 		m_Resultado = v0.minDistance;
@@ -67,7 +64,7 @@ public class TestDijkstra
 	}
 	
 	@Test
-	public void testLaLaguna() 
+	public void testDetinoLaLaguna() 
 	{	
 		Vertice v1 = m_Vertices[1];
 		m_Resultado = v1.minDistance;
@@ -75,7 +72,7 @@ public class TestDijkstra
 	}
 	
 	@Test
-	public void testTacoronte() 
+	public void testDetinoTacoronte() 
 	{	
 		Vertice v2 = m_Vertices[2];
 		m_Resultado = v2.minDistance;
@@ -83,7 +80,7 @@ public class TestDijkstra
 	}
 	
 	@Test
-	public void testCandelaria() 
+	public void testDestinoCandelaria() 
 	{	
 		Vertice v = m_Vertices[3];
 		m_Resultado = v.minDistance;
@@ -91,7 +88,7 @@ public class TestDijkstra
 	}
 	
 	@Test
-	public void testGuimar() 
+	public void testDestinoGuimar() 
 	{	
 		Vertice v = m_Vertices[4];
 		m_Resultado = v.minDistance;
@@ -99,7 +96,7 @@ public class TestDijkstra
 	}
 	
 	@Test
-	public void testVectorGuimar() 
+	public void testVerticesHastaGuimar() 
 	{	
 		List<Vertice> vertices = m_Algoritmo.getShortestPathTo(m_Vertices[4]);
 		int resultado = vertices.size();
@@ -107,7 +104,7 @@ public class TestDijkstra
 	}
 	
 	@Test
-	public void testVectorCandelaria() 
+	public void testVerticesHastaCandelaria() 
 	{	
 		List<Vertice> vertices = m_Algoritmo.getShortestPathTo(m_Vertices[3]);
 		int resultado = vertices.size();
@@ -115,7 +112,7 @@ public class TestDijkstra
 	}
 	
 	@Test
-	public void testVectorLaLaguna() 
+	public void testVerticesHastaLaLaguna() 
 	{	
 		List<Vertice> vertices = m_Algoritmo.getShortestPathTo(m_Vertices[2]);
 		int resultado = vertices.size();
@@ -123,36 +120,14 @@ public class TestDijkstra
 	}
 	
 	@Test
-	public void testVectorTacoronte() 
+	public void testVerticesHastaTacoronte() 
 	{	
 		List<Vertice> vertices = m_Algoritmo.getShortestPathTo(m_Vertices[4]);
 		int resultado = vertices.size();
 		assertTrue(resultado == 3);
 	}
 	
-	@Test
-	public void testVerticesIguales() 
-	{		
-		assertTrue(m_Vp1.compareTo(m_Vp2) == 0);
-	}
 	
-	@Test
-	public void testVerticesIguales2() 
-	{		
-		assertFalse(m_Vp1.compareTo(m_Vp2) != 0);
-	}
-	
-	@Test
-	public void testVerticesDistintos() 
-	{		
-		assertTrue(m_Vp1.compareTo(v2) != 0);
-	}
-	
-	@Test
-	public void testVerticesDistintos2() 
-	{		
-		assertFalse(m_Vp1.compareTo(v2) == 0);
-	}
 	
 	@Test
 	public void testListaVerticesLlena() 

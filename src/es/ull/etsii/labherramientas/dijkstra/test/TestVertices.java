@@ -1,6 +1,7 @@
 package es.ull.etsii.labherramientas.dijkstra.test;
 
 import static org.junit.Assert.*;
+
 import org.junit.Test;
 import org.junit.After;
 import org.junit.Before;
@@ -8,14 +9,14 @@ import es.ull.etsii.labherramientas.dijkstra.Vertice;
 
 public class TestVertices 
 {
-	private Vertice v1;
-	private Vertice v2;
+	private Vertice m_Vp1;
+	private Vertice m_Vp2;
 		
 	@Before
 	public void antesDelTest() {
 		
-		v1 = new Vertice("SantaCruz");
-		v2 = new Vertice("LaLaguna");
+		m_Vp1 = new Vertice("VerticePrueba1");
+		m_Vp2 = new Vertice("VerticePrueba2");
 	}
 
 	@After
@@ -28,9 +29,31 @@ public class TestVertices
 	}
 
 	@Test
-	public void testVertices() 
+	public void testVerticesIguales() 
+	{		
+		assertTrue(m_Vp1.compareTo(m_Vp2) == 0);
+	}
+	
+	@Test
+	public void testVerticesIguales2() 
+	{		
+		assertFalse(m_Vp1.compareTo(m_Vp2) != 0);
+	}
+	
+	@Test
+	public void testVerticesDistintos() 
 	{	
-		assertTrue(v1.compareTo(v2) == 0);
+		Vertice aux = new Vertice("Aux1");
+		aux.minDistance = 5;
+		assertTrue(m_Vp1.compareTo(aux) != 0);
+	}
+	
+	@Test
+	public void testVerticesDistintos2() 
+	{
+		Vertice aux = new Vertice("Aux1");
+		aux.minDistance = 5;
+		assertFalse(m_Vp1.compareTo(aux) == 0);
 	}
 	
 }
