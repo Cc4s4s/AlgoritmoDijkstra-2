@@ -15,8 +15,13 @@ public class TestDijkstra
 	private Dijkstra m_Algoritmo;
 	private Vertice[] m_Vertices;
 	private Double m_Resultado;
+	private Vertice v0;
 	private Vertice v1;
 	private Vertice v2;
+	private Vertice v3;
+	private Vertice v4;
+	private Vertice m_Vp1;
+	private Vertice m_Vp2;
 	
 	@Before
 	public void antesDelTest() {
@@ -26,11 +31,13 @@ public class TestDijkstra
 		 * antes de ejecutar los Tests que figuran en
 		 * esta clase.
 		 */
-		Vertice v0 = new Vertice("SantaCruz");
-		Vertice v1 = new Vertice("LaLaguna");
-		Vertice v2 = new Vertice("Tacoronte");
-		Vertice v3 = new Vertice("Candelaria");
-		Vertice v4 = new Vertice("Guimar");
+		v0 = new Vertice("SantaCruz");
+		v1 = new Vertice("LaLaguna");
+		v2 = new Vertice("Tacoronte");
+		v3 = new Vertice("Candelaria");
+		v4 = new Vertice("Guimar");
+		m_Vp1 = new Vertice("VerticePrueba1");
+		m_Vp2 = new Vertice("VerticePrueba2");
 
 		v0.adjacencies = new Arista[]{ new Arista(v1, 10), new Arista(v2, 24), new Arista(v3, 16) };
 		v1.adjacencies = new Arista[]{ new Arista(v0, 10), new Arista(v2, 14), new Arista(v4, 40) };
@@ -124,9 +131,62 @@ public class TestDijkstra
 	}
 	
 	@Test
-	public void testVertices() 
-	{	
-		assertTrue(v1.compareTo(v2) == 0);
+	public void testVerticesIguales() 
+	{		
+		assertTrue(m_Vp1.compareTo(m_Vp2) == 0);
 	}
 	
+	@Test
+	public void testVerticesIguales2() 
+	{		
+		assertFalse(m_Vp1.compareTo(m_Vp2) != 0);
+	}
+	
+	@Test
+	public void testVerticesDistintos() 
+	{		
+		assertTrue(m_Vp1.compareTo(v2) != 0);
+	}
+	
+	@Test
+	public void testVerticesDistintos2() 
+	{		
+		assertFalse(m_Vp1.compareTo(v2) == 0);
+	}
+	
+	@Test
+	public void testListaVerticesLlena() 
+	{		
+		assertTrue(m_Vertices.length > 0);
+	}
+	
+	@Test
+	public void testVerticesConDatos() 
+	{		
+		Boolean flag = true;
+		for(Vertice v : m_Vertices)
+		{
+			if(v.minDistance == Double.POSITIVE_INFINITY)
+			{
+				flag = false;
+				break;
+			}
+		}
+		assertTrue(flag);
+	}
+	
+	@Test
+	public void testVerticesNoNulos() 
+	{		
+		Boolean flag = true;
+		for(Vertice v : m_Vertices)
+		{
+			if(v == null)
+			{
+				flag = false;
+				break;
+			}
+		}
+		assertTrue(flag);
+	}
 }
