@@ -2,6 +2,8 @@ package es.ull.etsii.labherramientas.dijkstra.test;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 import org.junit.After;
 import org.junit.Before;
@@ -11,7 +13,13 @@ public class TestVertices
 {
 	private Vertice m_Vp1;
 	private Vertice m_Vp2;
-		
+	private ArrayList<Vertice> m_Vertices;
+	
+	public TestVertices()
+	{
+		this.m_Vertices = new ArrayList<Vertice>();
+	}
+	
 	@Before
 	public void antesDelTest() {
 		
